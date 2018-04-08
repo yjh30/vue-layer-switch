@@ -1,7 +1,85 @@
 # vue-layer-switch
 > 该组件要做的事情就是 切换 在一个三维空间内的所有面板（一个面板作为三维空间垂直方向的平面层）
 
+## Installation
+```
+npm i vue-layer-switch --save
+```
 
+### Usage
+```html
+  <div class="example">
+    <layer-switch
+      class="switch-component"
+      ref="layerSwitch"
+      :change="change"
+      :total-count="list.length"
+    >
+      <div
+        v-for="(item, i) in list"
+        :key="i"
+        v-if="Math.abs(index - i) < 2"
+      >
+        <img :src="item">
+        <span>第{{i + 1}}个面板</span><br>
+        <span>共有<em class="total-count">{{list.length}}</em>个面板</span>
+      </div>
+    </layer-switch>
+
+    <div class="buttons-wrap">
+      <div class="buttons">
+        <span class="btn" @click="switchNext">切换下一面板</span>
+        <span class="btn" @click="switchPrev">切换上一面板</span>
+        <span class="btn" @click="switchTo(0)">切换到第一个面板</span>
+        <span class="btn" @click="switchTo(list.length - 1)">切换到最后个面板</span>
+      </div>
+
+      <div class="buttons">
+        <span class="btn" @click="deleteCurrent(index)">删除当前面板</span>
+        <span class="btn" @click="switchTo(3)">切换到第四个面板</span>
+        <span class="btn" @click="switchTo(4)">切换到第五个面板</span>
+        <span class="btn" @click="switchTo(5)">切换到第六个面板</span>
+      </div>
+    </div>
+  </div>
+```
+
+```javascript
+  import 'vue-layer-switch/dist/component.css';
+  import layerSwitch from 'vue-layer-switch';
+
+  export default {
+    data() {
+      return {
+        list: [
+          imgUrl1, imgUrl2, imgUrl3, ...
+        ]
+      }
+    },
+    methods: {
+      change(index) {
+        this.index = index
+      },
+      switchNext() {
+        this.$refs['layerSwitch'].switchNext()
+      },
+      switchPrev() {
+        this.$refs['layerSwitch'].switchPrev()
+      },
+      switchTo(index) {
+        this.index = index
+        this.$refs['layerSwitch'].switchTo(index)
+      },
+      deleteCurrent(index) {
+        this.list.splice(index, 1)
+        this.$refs['layerSwitch'].deleteAfterRelayout(index)
+      }
+    },
+    components: {
+      layerSwitch
+    }
+  }
+```
 
 ## 业务背景
 公司（教育行业）需要做一个错题本项目，需要保持三年之内的数据，错题数据庞大，可能上千甚至上万道错题，每道题（题型：单选，多选，填空，英语听口；来源：多种自有题库，第三方题库...）作为一屏展现，支持左右滑动切换，点击答题卡序号切换，支持删除错题
