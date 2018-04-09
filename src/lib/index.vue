@@ -12,6 +12,8 @@
 </template>
 
 <script>
+  import './index.scss'
+
   import defineModel from './defineModel'
   import props from './props'
   import methods from './methods/index'
@@ -29,4 +31,3 @@
   }
 </script>
 
-<style lang="scss" scoped src="./index.scss"></style>
