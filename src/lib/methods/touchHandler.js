@@ -1,6 +1,6 @@
 import utils from '../utils/index'
 
-let startPos = { x: 0 }
+let startPos = { x: 0, y: 0 }
 let detal = { x: 0, lastX: 0, turnX: 0 }
 let transitioning = false
 let movePos = { lastX: 0 }
@@ -48,15 +48,27 @@ export default {
 
   doTouchStart(event) {
     if (transitioning) return
+
     const touch = event.targetTouches[0]
     startPos.x = touch.pageX
+    startPos.y = touch.pageY
   },
 
   doTouchMove(event) {
     if (transitioning) return
-    const touch = event.targetTouches[0]
-    detal.x = touch.pageX - startPos.x
 
+    const touch = event.targetTouches[0]
+
+    const diffX = touch.pageX - startPos.x
+    const diffY = touch.pageY - startPos.y
+
+    if (Math.abs(diffX) < Math.abs(diffY)) {
+      return
+    } else {
+      event.preventDefault()
+    }
+
+    detal.x = diffX
     this.move(detal.x)
 
     this.updateTurnX(touch)

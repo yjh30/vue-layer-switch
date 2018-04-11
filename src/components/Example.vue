@@ -7,6 +7,7 @@
       :total-count="list.length"
     >
       <div
+        class="panel"
         v-for="(item, i) in list"
         :key="i"
         v-if="Math.abs(index - i) < 2"
@@ -14,6 +15,20 @@
         <img :src="item">
         <span>第{{i + 1}}个面板</span><br>
         <span>共有<em class="total-count">{{list.length}}</em>个面板</span>
+        <p>4月10日上午，在海南博鳌亚洲论坛的年会上，来自海内外数千名嘉宾，听到了一场极为精彩、印象深刻的演讲，中国国家主席习近平对当今世界形势作了十分准确的分析，对未来全球经济发展作了富有远见的研判，对中国改革开放事业的前景作了令人振奋的描绘。
+
+开放还是封闭？前进还是后退？人类面临着新的重大抉择。面对复杂变化的世界，人类社会向何处去？亚洲前途在哪里？中国改革开放的航船将舵使何方？请听中国国家主席习近平的声音！
+
+（央视记者：申勇 刘爱民 彭柏闳 陈汉章 邢彬 李铮 章猛 石伟明 王哈男 舒贝 张晓鹏 段德文 杨立峰 沈忱 米鹤 李昊 伊斌 齐欢）</p>
+<p>4月10日上午，在海南博鳌亚洲论坛的年会上，来自海内外数千名嘉宾，听到了一场极为精彩、印象深刻的演讲，中国国家主席习近平对当今世界形势作了十分准确的分析，对未来全球经济发展作了富有远见的研判，对中国改革开放事业的前景作了令人振奋的描绘。
+
+开放还是封闭？前进还是后退？人类面临着新的重大抉择。面对复杂变化的世界，人类社会向何处去？亚洲前途在哪里？中国改革开放的航船将舵使何方？请听中国国家主席习近平的声音！
+
+（央视记者：申勇 刘爱民 彭柏闳 陈汉章 邢彬 李铮 章猛 石伟明 王哈男 舒贝 张晓鹏 段德文 杨立峰 沈忱 米鹤 李昊 伊斌 齐欢）</p><p>4月10日上午，在海南博鳌亚洲论坛的年会上，来自海内外数千名嘉宾，听到了一场极为精彩、印象深刻的演讲，中国国家主席习近平对当今世界形势作了十分准确的分析，对未来全球经济发展作了富有远见的研判，对中国改革开放事业的前景作了令人振奋的描绘。
+
+开放还是封闭？前进还是后退？人类面临着新的重大抉择。面对复杂变化的世界，人类社会向何处去？亚洲前途在哪里？中国改革开放的航船将舵使何方？请听中国国家主席习近平的声音！
+
+（央视记者：申勇 刘爱民 彭柏闳 陈汉章 邢彬 李铮 章猛 石伟明 王哈男 舒贝 张晓鹏 段德文 杨立峰 沈忱 米鹤 李昊 伊斌 齐欢）</p>
       </div>
     </layer-switch>
 
@@ -36,9 +51,9 @@
 </template>
 
 <script>
-  // import layerSwitch from '../lib/index.vue'
-  import '../../dist/component.css'
-  import layerSwitch from '../../dist/component'
+  import layerSwitch from '../lib/index.vue'
+  // import '../../dist/component.css'
+  // import layerSwitch from '../../dist/component'
 
   export default {
     mounted() {
@@ -3507,6 +3522,11 @@
       width: 100%;
       vertical-align: top;
     }
+  }
+  .panel {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
   }
   .total-count {
     font-weight: bold;
