@@ -11,6 +11,8 @@ const reset = function() {
   movePos = { lastX: 0 }
 }
 
+let stopMove = false
+
 export default {
   updateTurnX(touch) {
     if (movePos.lastX === 0) return
@@ -46,16 +48,29 @@ export default {
     }
   },
 
+  resetScroll() {
+    if (this.totalCount === 0) {
+      return
+    }
+    const prevEl = this.currentPanel.previousElementSibling
+    const nextEl = this.currentPanel.nextElementSibling
+
+    prevEl && (prevEl.scrollTop = 0)
+    nextEl && (nextEl.scrollTop = 0)
+  },
+
   doTouchStart(event) {
     if (transitioning) return
-
     const touch = event.targetTouches[0]
     startPos.x = touch.pageX
     startPos.y = touch.pageY
+    stopMove = false
+
+    this.resetScroll()
   },
 
   doTouchMove(event) {
-    if (transitioning) return
+    if (transitioning || stopMove) return
 
     const touch = event.targetTouches[0]
 
@@ -63,6 +78,7 @@ export default {
     const diffY = touch.pageY - startPos.y
 
     if (Math.abs(diffX) < Math.abs(diffY)) {
+      stopMove = true
       return
     } else {
       event.preventDefault()

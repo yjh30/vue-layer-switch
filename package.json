@@ -1,6 +1,6 @@
 {
   "name": "vue-layer-switch",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "实现一个三维空间内的无数个平面层的切换",
   "main": "dist/component.js",
   "publish": true,
