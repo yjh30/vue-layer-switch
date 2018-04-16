@@ -5,6 +5,8 @@ let detal = { x: 0, lastX: 0, turnX: 0 }
 let transitioning = false
 let movePos = { lastX: 0 }
 
+const cssTransitionDuration = utils.getCssProperty('transition-duration')
+
 const reset = function() {
   detal = { x: 0, lastX: 0, turnX: 0 }
   transitioning = false
@@ -187,13 +189,13 @@ export default {
 
     utils.requestAnimationFrame(() => {
       utils.setTranslateX(el, translateX)
-      el.style.transition = 'transform 0.25s ease-out'
+      el.style[cssTransitionDuration] = '0.25s'
     })
 
     const endCallback = () => {
       el.removeEventListener('webkitTransitionEnd', endCallback)
       el.removeEventListener('transitionend', endCallback)
-      el.style.transition = ''
+      el.style[cssTransitionDuration] = ''
       reset()
       callback && callback()
     }

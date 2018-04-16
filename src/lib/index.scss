@@ -13,6 +13,9 @@
     &>* {
       @include fullscreen-layout;
       background-color: #fff;
+      backface-visibility: hidden;
+      transition-timing-function: 'ease-out';
+      transition-property: 'transform';
     }
   }
 }
